@@ -116,6 +116,8 @@ const Home = (props) => {
               variant="contained"
               color="primary"
               className={classes.submit}
+              className="animated bounceInLeft"
+              style={{marginTop: 20}}
               onClick={() => initLogin({user,pass,vcodeText,code})}
             >登录</Button>
           </form>
