@@ -1,10 +1,22 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store';
+import Home from './pages/home';
 
 function App() {
   return (
-    <div>
-      <h1>cloud</h1>
-    </div>
+    <Provider store={store}>
+      <Router>
+        <Switch>
+          <Route path="/" component={Home} />
+        </Switch>
+      </Router>
+    </Provider>
   );
 }
 
