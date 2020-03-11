@@ -14,6 +14,7 @@ import message from 'antd/lib/message'
 import { actionCreators } from './store';
 import './index.scss';
 import './style';
+import siteConfig from '../../config/site.json';
 
 function Copyright() {
   return (
@@ -47,7 +48,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Home = (props) => {
-  const { site, user, pass,vcodeText,vcodeLen } = props;
+  const { user, pass,vcodeText,vcodeLen } = props;
   const { initFormValue, initLogin } = props;
   const classes = useStyles();
   const [code,setCode] = useState(vcodeText);
@@ -60,7 +61,7 @@ const Home = (props) => {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">{site}</Typography>
+          <Typography component="h1" variant="h5">{siteConfig.site}</Typography>
           <form
             noValidate
             className={classes.form}
@@ -115,8 +116,8 @@ const Home = (props) => {
               fullWidth
               variant="contained"
               color="primary"
-              className={classes.submit}
-              className="animated bounceInLeft"
+              className={classes.submit,'animated bounceInLeft'}
+              // className="animated bounceInLeft"
               style={{marginTop: 20}}
               onClick={() => initLogin({user,pass,vcodeText,code})}
             >登录</Button>
@@ -131,7 +132,6 @@ const Home = (props) => {
 }
 
 const mapStateToProps = state => ({
-  site: state.getIn(['global', 'site']),
   user: state.getIn(['login', 'username']),
   pass: state.getIn(['login', 'password']),
   vcodeText: state.getIn(['login','vcodeText']),
