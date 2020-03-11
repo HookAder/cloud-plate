@@ -9,6 +9,7 @@ import {
   FilesList,
   FilesItem
 } from "./style";
+import siteConfig from '../../../../config/site.json';
 
 const FilesOnfolder = ({ to, title, ...rest }) => {
   return (
@@ -29,7 +30,7 @@ const Files = props => {
   return (
     <div className="files">
       <Header
-        title="非清网盘"
+        title={siteConfig.site}
         type="add"
       />
       <TopBar />
