@@ -8,7 +8,6 @@ import './static/icon.css';
 import 'antd/dist/antd.css';
 import 'animate.css';
 
-
 ReactDOM.render(<App />, document.getElementById('root'));
 
 serviceWorker.unregister();
