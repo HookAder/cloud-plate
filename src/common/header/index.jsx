@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
+import HomeIcon from '@material-ui/icons/Home';
+import AddIcon from '@material-ui/icons/Add';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import message from 'antd/lib/message';
+import { actionCreators } from './store';
+import './index.scss';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,54 +27,74 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Header = ({ is, title }) => {
+const HeaderAddFolder = ({ is, addFolder }) => {
+  const [folder, setFolder] = useState({ title: '' });
+
+  const handleClick = () => {
+    addFolder(folder);
+    setFolder({ title: '' });
+  }
+  return (
+    <div
+      className="header-add-folder animated slideInDown"
+      // className="header-add-folder"
+      style={{ display: is }}
+    >
+      <header>创建文件夹</header>
+      <TextField
+        id="standard-basic"
+        label="folder"
+        value={folder.title}
+        onChange={e => setFolder({ title: e.target.value })} />
+      <Button
+        variant="contained"
+        color="primary"
+        style={{ marginTop: 10 }}
+        onClick={handleClick}
+      >提交</Button>
+    </div>
+  );
+}
+
+const Header = (props) => {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+  const [toggle, setToggle] = useState('none');
+  const { type, title } = props;
+  const { submitAddFolder } = props;
+  const handleToggle = () => {
+    if (toggle === 'none') {
+      setToggle('block');
+    } else {
+      setToggle('none');
+    }
+  }
 
-  const handleMenu = event => {
-    setAnchorEl(event.currentTarget);
-  };
+  // 提交创建文件夹
+  const handleSubmitAddFolder = folder => {
+    submitAddFolder(folder);
+    setToggle('none');
+  }
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
   return (
     <div className={classes.root}>
+      <HeaderAddFolder is={toggle} addFolder={folder => handleSubmitAddFolder(folder)} />
       <AppBar position="static">
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
+            <HomeIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>{title}</Typography>
-          {is && (
+          {type === 'add' && (
             <div>
               <IconButton
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleMenu}
                 color="inherit"
+                onClick={handleToggle}
               >
-                <AccountCircle />
+                <AddIcon />
               </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={open}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>我的信息</MenuItem>
-              </Menu>
             </div>
           )}
         </Toolbar>
@@ -80,13 +104,24 @@ const Header = ({ is, title }) => {
 }
 
 Header.propTypes = {
-  is: PropTypes.bool,
+  type: PropTypes.string,
   title: PropTypes.string
 }
 
 Header.defaultProps = {
-  is: false,
+  is: 'add',
   title: '默认标题'
 }
 
-export default Header;
+
+const mapDispatchToProps = dispatch => ({
+  submitAddFolder(folder) {
+    dispatch(actionCreators.initialSubmitAddFolder(folder));
+    message.success(`"${folder.title}"文件夹创建成功`,.8);
+  }
+})
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Header);

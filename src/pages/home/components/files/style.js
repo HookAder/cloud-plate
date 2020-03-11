@@ -13,15 +13,14 @@ export const FilesList = styled.ul`
   height: 100%;
   margin: 0;
   padding: 0;
-  justify-content: space-around;
-  align-items: center;
   flex-wrap: wrap;
 `;
 
 export const FilesItem = styled.li`
   margin-top: .2rem;
   list-style: none;
-  width: 48%;
+  float: left;
+  width: 33%;
   height: 6rem;
   background: #fff;
   display: flex;

@@ -1,0 +1,17 @@
+.header-add-folder {
+  position: fixed;
+  top: 56px;
+  width: 100%;
+  height: 8rem;
+  background-color: #fff;
+  opacity: .9;
+  box-shadow: 3px 4px 13px black;
+  header {
+    background-color: #4e5eb8;
+    color: #fff;
+    height: 3rem;
+    text-align: center;
+    line-height: 3rem;
+    font-size: 1rem;
+  }
+}

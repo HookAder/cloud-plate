@@ -1,0 +1,1 @@
+export const SUBMIT_FOLDER = 'HEADER/SUBMIT_FOLDER';

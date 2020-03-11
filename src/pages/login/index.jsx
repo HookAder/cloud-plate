@@ -116,7 +116,7 @@ const Home = (props) => {
               fullWidth
               variant="contained"
               color="primary"
-              className={classes.submit,'animated bounceInLeft'}
+              className={'animated bounceInLeft'}
               // className="animated bounceInLeft"
               style={{marginTop: 20}}
               onClick={() => initLogin({user,pass,vcodeText,code})}

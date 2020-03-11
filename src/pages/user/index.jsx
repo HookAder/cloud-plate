@@ -8,7 +8,6 @@ const User = () => {
   return (
     <div className="user">
       <Header
-        is={true}
         title="用户"
       />
       <h1>我的</h1>

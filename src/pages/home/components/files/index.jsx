@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link, useRouteMatch } from 'react-router-dom';
 import Header from '../../../../common/header';
 import NavBar from '../../../../common/navBar';
 import TopBar from '../../../../common/topBar';
@@ -8,50 +9,51 @@ import {
   FilesList,
   FilesItem
 } from "./style";
-const Files = () => {
+
+const FilesOnfolder = ({ to, title, ...rest }) => {
+  return (
+    <FilesItem>
+      <Link to={to} {...rest}>
+        <svg className="icon" aria-hidden="true">
+          <use href="#icon-files1"></use>
+        </svg>
+        <span>{title ? title : '默认文件夹'}</span>
+      </Link>
+    </FilesItem>
+  );
+}
+
+const Files = props => {
+  const match = useRouteMatch();
+  const { filesFolder } = props;
   return (
     <div className="files">
-      <Header title="非清网盘" />
+      <Header
+        title="非清网盘"
+        type="add"
+      />
       <TopBar />
       <FilesWrapper>
         <FilesList>
-          <FilesItem>
-            <Link to="/home/files">
-              <svg className="icon" aria-hidden="true">
-                <use href="#icon-files1"></use>
-              </svg>
-              <span>文件夹</span>
-            </Link>
-          </FilesItem>
-          <FilesItem>
-            <Link to="/home/files">
-              <svg className="icon" aria-hidden="true">
-                <use href="#icon-files1"></use>
-              </svg>
-              <span>文件夹</span>
-            </Link>
-          </FilesItem>
-          <FilesItem>
-            <Link to="/home/files">
-              <svg className="icon" aria-hidden="true">
-                <use href="#icon-files1"></use>
-              </svg>
-              <span>文件夹</span>
-            </Link>
-          </FilesItem>
-          <FilesItem>
-            <Link to="/home/files">
-              <svg className="icon" aria-hidden="true">
-                <use href="#icon-files1"></use>
-              </svg>
-              <span>文件夹</span>
-            </Link>
-          </FilesItem >
-        </FilesList >
-      </FilesWrapper >
+          {filesFolder.map((file, index) => (
+            <FilesOnfolder key={index} to={`${match.url}/${file.title}`} title={file.title} />
+          ))}
+        </FilesList>
+      </FilesWrapper>
       <NavBar />
     </div >
   );
 };
 
-export default Files;
+const mapStateToProps = state => ({
+  filesFolder: state.get('files').filesFolder
+});
+
+const mapDispatchToProps = dispatch => ({
+
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Files);
