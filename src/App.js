@@ -19,6 +19,7 @@ function App() {
           <Route path="/home" component={Home} />
           <Route path="/user" component={User} />
           <Route path="/login" component={Login} />
+          <Route render={() => <h2>404 Pages.</h2>} />
           <Redirect exact from="/" to="/home" />
         </Switch>
       </Router>

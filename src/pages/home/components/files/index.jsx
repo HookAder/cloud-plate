@@ -37,7 +37,14 @@ const Files = props => {
       <FilesWrapper>
         <FilesList>
           {filesFolder.map((file, index) => (
-            <FilesOnfolder key={index} to={`${match.url}/${file.title}`} title={file.title} />
+            <FilesOnfolder
+              key={index}
+              // to={`${match.url}/${file.title}`}
+              to={{
+                pathname: `${match.url}/${file.title}`,
+                data: file.title
+              }}
+              title={file.title} />
           ))}
         </FilesList>
       </FilesWrapper>
