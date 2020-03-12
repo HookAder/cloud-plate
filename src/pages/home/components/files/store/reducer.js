@@ -1,5 +1,6 @@
-import { constants as HeaderConstants } from '../../../../../common/header/store';
 import { constants } from './';
+import { constants as HeaderConstants } from '../../../../../common/header/store';
+import { constants as FolderConstants } from '../../folder/store';
 
 const initialState = {
   // 文件夹得名称
@@ -23,6 +24,11 @@ export default (state = initialState, action) => {
   if(action.type === constants.OPEN_FOLDER){
     const newData = JSON.parse(JSON.stringify(state));
     newData.activeFilesData = action.folderData;
+    return newData;
+  }
+  if(action.type === FolderConstants.DELETE_ONE_FILE){
+    const newData = JSON.parse(JSON.stringify(state));
+    newData.activeFilesData.splice(action.index,1);
     return newData;
   }
   return state;

@@ -50,7 +50,7 @@ const Files = props => {
               onClick={title => openFolderData(title)}
               to={{
                 pathname: `${match.url}/${file}`,
-                data: file
+                title: file
               }}
               title={file} />
           ))}
