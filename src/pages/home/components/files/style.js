@@ -5,12 +5,13 @@ export const FilesWrapper = styled.div`
   margin-top: .1rem;
   width: 100%;
   background: #fff;
+  overflow: auto;
 `;
 
 export const FilesList = styled.ul`
+  flex: 1;
   display: flex;
   width: 100%;
-  height: 100%;
   margin: 0;
   padding: 0;
   flex-wrap: wrap;

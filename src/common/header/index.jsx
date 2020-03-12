@@ -28,11 +28,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const HeaderAddFolder = ({ is, addFolder }) => {
-  const [folder, setFolder] = useState({ title: '' });
+  const [folder, setFolder] = useState('');
 
   const handleClick = () => {
+    if(folder === '' || !folder){
+      return message.error('请输入文件夹');
+    }
     addFolder(folder);
-    setFolder({ title: '' });
+    setFolder('');
   }
   return (
     <div
@@ -45,7 +48,7 @@ const HeaderAddFolder = ({ is, addFolder }) => {
         id="standard-basic"
         label="folder"
         value={folder.title}
-        onChange={e => setFolder({ title: e.target.value })} />
+        onChange={e => setFolder(e.target.value)} />
       <Button
         variant="contained"
         color="primary"
@@ -116,8 +119,7 @@ Header.defaultProps = {
 
 const mapDispatchToProps = dispatch => ({
   submitAddFolder(folder) {
-    dispatch(actionCreators.initialSubmitAddFolder(folder));
-    message.success(`"${folder.title}"文件夹创建成功`,.8);
+    dispatch(actionCreators.createSubmitAddFolder(folder));
   }
 })
 

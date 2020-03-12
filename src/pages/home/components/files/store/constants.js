@@ -1,0 +1,2 @@
+export const INIT_FOLDER = 'FILES/INIT_FOLDER';
+export const OPEN_FOLDER = 'FILES/OPEN_FOLDER';
