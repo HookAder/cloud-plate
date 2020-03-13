@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Header from '../../common/header';
 import NavBar from '../../common/navBar';
 import {
@@ -7,16 +8,42 @@ import {
 import './index.scss';
 import './style';
 
-const User = () => {
+const User = (props) => {
+  const { folderLen } = props;
   return (
     <UserWrapper>
       <Header
         title="用户"
       />
-      <h2>User</h2>
+      <div className="user-folder-list">
+        <ul>
+          <li>
+            <b>总文件夹</b>
+            <svg class="icon" aria-hidden="true">
+              <use href="#icon-files"></use>
+            </svg>
+            <span>{folderLen}</span>
+          </li>
+          {/* <li>
+            <b>总文件夹</b>
+            <svg class="icon" aria-hidden="true">
+              <use href="#icon-files"></use>
+            </svg>
+            <span>{folderLen}</span>
+          </li> */}
+        </ul>
+      </div >
       <NavBar />
-    </UserWrapper>
+    </UserWrapper >
   );
 }
 
-export default User;
+
+const mapStateToProps = state => ({
+  folderLen: state.get('files').filesFolder.length
+})
+
+export default connect(
+  mapStateToProps,
+  null
+)(User);
