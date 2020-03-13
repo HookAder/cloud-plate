@@ -8,7 +8,7 @@ const About = () => {
     <div className="about">
       <Header title="非清网盘" />
       <TopBar />
-      <h1>其他</h1>
+      <h1>说明</h1>
       <NavBar />
     </div>
   );

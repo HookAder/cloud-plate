@@ -16,7 +16,7 @@ const TopBar = () => {
           <svg className="icon" aria-hidden="true">
             <use href="#icon-qita"></use>
           </svg>
-          <NavLink to="/home/about" activeClassName="topbar-active animated headShake">其他</NavLink>
+          <NavLink to="/home/about" activeClassName="topbar-active animated headShake">说明</NavLink>
         </li>
       </ul>
     </div >
