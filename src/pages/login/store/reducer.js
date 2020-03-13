@@ -5,7 +5,7 @@ const initialState = fromJS({
   username: '',
   password: '',
   vcodeText: '',
-  vcodeLength: 2,
+  vcodeLength: 5,
   isLogin: false
 });
 

@@ -98,6 +98,9 @@ const Folder = (props) => {
     name: 'file',
     method: "POST",
     action: `/api/uploadFile?folder=${folderName}`,
+    headers: {
+      'Authorization': `Bearer ${window.localStorage.getItem('jwt_token')}`
+    },
     onChange(info) {
       if (info.file.status !== 'uploading') {
         console.log(info.file, info.fileList);

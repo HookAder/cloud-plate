@@ -2,7 +2,6 @@ import axios from 'axios';
 import message from 'antd/lib/message';
 import { HashRouter } from "react-router-dom";
 const router = new HashRouter();
-console.log(router);
 
 const request = axios.create({});
 
