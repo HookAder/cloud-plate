@@ -15,7 +15,6 @@ import DownloadIcon from '@material-ui/icons/CloudDownload';
 import AddIcon from '@material-ui/icons/Add';
 import { Modal } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
-import axios from 'axios';
 import { Upload, message } from 'antd';
 import { actionCreators } from './store';
 import './index.scss';

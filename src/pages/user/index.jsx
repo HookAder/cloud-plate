@@ -1,18 +1,21 @@
 import React from 'react';
 import Header from '../../common/header';
 import NavBar from '../../common/navBar';
+import {
+  UserWrapper
+} from './style';
 import './index.scss';
 import './style';
 
 const User = () => {
   return (
-    <div className="user">
+    <UserWrapper>
       <Header
         title="用户"
       />
-      <h1>我的</h1>
+      <h2>User</h2>
       <NavBar />
-    </div>
+    </UserWrapper>
   );
 }
 
