@@ -134,7 +134,7 @@ const Folder = (props) => {
         <div className={classes.demo}>
           <List dense={false}>
             {
-              activeFilesData.length !== 0 ? (
+              activeFilesData ? (
                 activeFilesData.map((file, index) => (
                   <ListItemWrapper
                     key={index}

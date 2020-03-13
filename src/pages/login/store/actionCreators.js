@@ -1,3 +1,4 @@
+import { HashRouter } from 'react-router-dom';
 import message from 'antd/lib/message';
 import { constants } from './';
 import request from '../../../utils/request';
@@ -16,11 +17,13 @@ const initialLoginState = status => ({
 export const initialLoginAPP =  (user,pass) => {
   return async dispatch => {
     const result = await request.post('/api/login',{user,pass});
-    console.log(result.data);
+    // console.log(result.data);
     if(result.data.status === 200){
       dispatch(initialLoginState(true));
       message.success(result.data.msg,.8);
-      window.location.pathname = '/';
+      const router = new HashRouter();
+      router.history.replace('/');
+      //window.location.pathname = '/';
     }else{
       message.error(result.data.msg,.8);
     }

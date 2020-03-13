@@ -19,10 +19,10 @@ const User = (props) => {
         <ul>
           <li>
             <b>总文件夹</b>
-            <svg class="icon" aria-hidden="true">
+            <svg className="icon" aria-hidden="true">
               <use href="#icon-files"></use>
             </svg>
-            <span>{folderLen}</span>
+            <span>{folderLen ? folderLen : '无'}</span>
           </li>
           {/* <li>
             <b>总文件夹</b>
