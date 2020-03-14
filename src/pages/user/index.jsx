@@ -95,7 +95,6 @@ const User = (props) => {
   );
 }
 
-
 const mapStateToProps = state => ({
   folderLen: state.get('files').filesFolder.length
 })
