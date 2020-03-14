@@ -148,7 +148,7 @@ const Folder = (props) => {
                 ))
               ) : <NoneFolderFiles />
             }
-            <div className="footer-count">总文件：{activeFilesData.length}</div>
+            <div className="footer-count">总文件：{activeFilesData.length ? activeFilesData.length : 0}</div>
           </List>
         </div>
       </Grid>
