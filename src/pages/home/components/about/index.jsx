@@ -16,10 +16,12 @@ const md = `
 - [x]  下载文件
 - [x]  下载文件
 - [x]  创建文件夹
+- []  删除文件夹
 
 ### 详情说明
-1. 路由鉴权
+1. 登录鉴权
 2. 采用接口权限JWT(jsonwebtoken)和Express配置
+3. API接口的权限认证
 `;
 
 const About = () => {

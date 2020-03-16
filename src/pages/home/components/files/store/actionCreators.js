@@ -25,7 +25,7 @@ const add_folder = (folderData) => ({
 
 export const openFolderData = (folderName) => {
   return async dispatch => {
-    const result = await request.get(`/api/openFolder?folderName=${folderName}`);
+    const result = await request.post('/api/openFolder',{folderName});
     dispatch(add_folder(result.data.filesArr));
   }
 }

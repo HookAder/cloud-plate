@@ -22,7 +22,7 @@ export const initialLoginAPP =  (user,pass) => {
       dispatch(initialLoginState(true));
       message.success(result.data.msg,.8);
       const router = new HashRouter();
-      router.history.replace('/');
+      router.history.replace('/home');
       //window.location.pathname = '/';
     }else{
       message.error(result.data.msg,.8);

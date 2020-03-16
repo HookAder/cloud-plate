@@ -1,5 +1,6 @@
-import React,{ useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { HashRouter } from 'react-router-dom';
 import { load } from 'jinrishici';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -11,9 +12,12 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Header from '../../common/header';
 import NavBar from '../../common/navBar';
+import { Modal } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 import {
   UserWrapper
 } from './style';
+import siteConfig from '../../config/site.json';
 import './index.scss';
 import './style';
 
@@ -25,6 +29,22 @@ const useStyles = makeStyles({
     margin: 'auto'
   },
 });
+
+const { confirm } = Modal;
+function handleExit() {
+  confirm({
+    title: '非清网盘提示',
+    icon: <ExclamationCircleOutlined />,
+    content: '你确定要退出吗?',
+    onOk() {
+      const router = new HashRouter();
+      window.localStorage.removeItem('jwt_token');
+      router.history.push('/login');
+    },
+    onCancel() {
+    },
+  });
+}
 
 const FolderListItem = ({ title, len }) => (
   <li>
@@ -39,14 +59,13 @@ const FolderListItem = ({ title, len }) => (
 const User = (props) => {
   const { folderLen } = props;
   const classes = useStyles();
-  const [poems,setPoems] = useState('');
+  const [poems, setPoems] = useState('');
   useEffect(() => {
     // 获取今日诗词
     load(result => {
       setPoems(result.data.content);
     })
-  },[])
-
+  }, [])
   return (
     <UserWrapper>
       <Header
@@ -70,14 +89,14 @@ const User = (props) => {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              沉鱼落木
-          </Typography>
+              {siteConfig.auther}
+            </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               {poems}
-          </Typography>
+            </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions style={{justifyContent:'center'}}>
+        <CardActions style={{ justifyContent: 'center' }}>
           <a href="https://www.inlc.top/" target="_blank">
             <Button size="small" color="primary">
               我的网站
@@ -85,11 +104,12 @@ const User = (props) => {
           </a>
           <a href="https://www.inlc.top/?page_id=78" target="_blank">
             <Button size="small" color="primary">
-            我的项目
+              我的项目
             </Button>
           </a>
         </CardActions>
       </Card>
+      <button className="exit-btn" onClick={handleExit}>退出登录</button>
       <NavBar />
     </UserWrapper >
   );

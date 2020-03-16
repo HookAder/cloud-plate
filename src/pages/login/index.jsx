@@ -62,6 +62,7 @@ const Home = (props) => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">{siteConfig.site}</Typography>
+          <Typography component="h1" variant="h6">v.{siteConfig.version}</Typography>
           <form
             noValidate
             className={classes.form}
@@ -124,6 +125,10 @@ const Home = (props) => {
           </form>
         </div>
         <Box mt={6}>
+          <a
+            href="https://www.inlc.top"
+            target="_blank"
+          >友情链接:沉鱼落木</a>
           <Copyright />
         </Box>
       </Container>

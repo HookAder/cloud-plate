@@ -21,7 +21,9 @@ const NotFound = (props) => {
     timer = setTimeout(() => {
       props.history.replace('/home');
     }, 3000)
-    return () => timer = null;
+    return () => {
+      clearTimeout(timer)
+    }
   }, []);
 
   return (

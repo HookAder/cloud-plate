@@ -103,6 +103,7 @@ const Folder = (props) => {
     },
     onChange(info) {
       if (info.file.status !== 'uploading') {
+        console.log('1')
         console.log(info.file, info.fileList);
       }
       if (info.file.status === 'done') {
@@ -148,15 +149,13 @@ const Folder = (props) => {
                 ))
               ) : <NoneFolderFiles />
             }
-            <div className="footer-count">总文件：{activeFilesData.length ? activeFilesData.length : 0}</div>
+            <div className="footer-count">总文件：{activeFilesData ? activeFilesData.length : 0}</div>
           </List>
         </div>
       </Grid>
     </div>
   );
 };
-
-
 
 const mapStateToProps = state => ({
   activeFilesData: state.get('files').activeFilesData
