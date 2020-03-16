@@ -21,8 +21,6 @@ import './index.scss';
 
 const { confirm } = Modal;
 
-
-
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -103,12 +101,16 @@ const Folder = (props) => {
     },
     onChange(info) {
       if (info.file.status !== 'uploading') {
-        console.log('1')
-        console.log(info.file, info.fileList);
+        //console.log(info.file, info.fileList);
       }
       if (info.file.status === 'done') {
-        message.success(`${info.file.name} 文件上传成功`);
-        updateFolderData(folderName);
+        //console.log(info.file.response);
+        if(info.file.response.status !== 0){
+          message.success(`${info.file.name} 文件上传成功`);
+          updateFolderData(folderName);
+        }else{
+          message.error(`${info.file.response.msg}`);
+        }
       } else if (info.file.status === 'error') {
         message.error(`${info.file.name} 文件上传失败`);
       }

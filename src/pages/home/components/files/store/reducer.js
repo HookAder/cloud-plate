@@ -33,7 +33,7 @@ export default (state = initialState, action) => {
   }
   if(action.type === FolderConstants.UPDATE_FOLDER_DATA){
     const newData = JSON.parse(JSON.stringify(state));
-    console.log(action.folderData);
+    // console.log(action.folderData);
     newData.activeFilesData = action.folderData;
     return newData;
   }
