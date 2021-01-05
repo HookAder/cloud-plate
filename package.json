@@ -10,7 +10,7 @@
     "@testing-library/user-event": "^7.1.2",
     "animate.css": "^3.7.2",
     "antd": "^4.0.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "http-proxy-middleware": "^1.0.1",
     "immutable": "^4.0.0-rc.12",
     "jinrishici": "^1.0.6",
